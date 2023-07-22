@@ -33,6 +33,8 @@ class Initials extends Seeder
         $affiliator['skype'] = "www.skype.com/john01976543210";
         $affiliator['website'] = "www.john.com";
         $affiliator['promotional_method'] = "Coupon";
+        $affiliator['address'] = "Moghbazar, Dhaka";
+        $affiliator['division'] = "Dhaka";
         $affiliator['country'] = "Bangladesh";
         $affiliator['password'] = Hash::make("123456");
 

@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('skype')->unique()->nullable();
             $table->string('website')->unique()->nullable();
+            $table->string('address')->nullable();
+            $table->string('division');
             $table->string('country')->nullable();
             $table->string('promotional_method')->nullable();
             $table->timestamp('email_verified_at')->nullable();

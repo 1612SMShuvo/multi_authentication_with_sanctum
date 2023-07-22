@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Affiliator;
 use Auth;
 
 class AdminLoginController extends Controller
@@ -47,6 +49,50 @@ class AdminLoginController extends Controller
             'code' => 200,
             'message' => 'User Info Retrived',
             'data' => ['user' => $user],
+            'error' => []
+        ]);
+    }
+
+    public function allAdminInfo()
+    {
+        $users = User::orderBy('created_at', 'desc')->sortable();
+
+        if (request('email')) {
+
+            $user->where('users.email', request('email'));
+        }
+        if( request('per_page') ){
+            $result = $users->orderBy('id', 'desc')->paginate(request('per_page'));
+        }else{
+            $result = $users->orderBy('id', 'desc')->paginate(10);
+        }
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'message' => 'Admin Infos Retrived',
+            'data' => ['user' => $result],
+            'error' => []
+        ]);
+    }
+
+    public function allAffiliatorInfo()
+    {
+        $affiliators = Affiliator::orderBy('created_at', 'desc')->sortable();
+
+        if (request('division')) 
+        {
+            $affiliators->where('affiliators.division', request('division'));
+        }
+        if( request('per_page') ){
+            $result = $affiliators->orderBy('id', 'desc')->paginate(request('per_page'));
+        }else{
+            $result = $affiliators->orderBy('id', 'desc')->paginate(10);
+        }
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'message' => 'Affiliator Infos Retrived',
+            'data' => ['user' => $result],
             'error' => []
         ]);
     }

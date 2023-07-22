@@ -22,8 +22,11 @@ use App\Http\Controllers\Affiliator\AffiliatorLoginController;
 Route::post('admin/login',[AdminLoginController::class,'login']);
 Route::middleware('throttle:1000,1','auth:sanctum','abilities:user')->group(function () {
     Route::get('admin/info',[AdminLoginController::class,'user_info']);
+    Route::get('admin/allAffiliatorInfo',[AdminLoginController::class,'allAffiliatorInfo']);
+    Route::get('admin/allAdminInfo',[AdminLoginController::class,'allAdminInfo']);
 });
 Route::post('affiliator/login',[AffiliatorLoginController::class,'login']);
+Route::post('affiliator/signUp',[AffiliatorLoginController::class,'signUp']);
 Route::middleware('throttle:1000,1','auth:sanctum','abilities:affiliator')->group(function () {
     Route::get('affiliator/info',[AffiliatorLoginController::class,'user_info']);
 });
